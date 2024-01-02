@@ -1,0 +1,25 @@
+Pilha / Stack
+
+FILO = First In / Last Out
+LIFO = Last In / First Out
+
+---
+|4| -> Topo
+---
+|3|
+---
+|2|
+---
+|1|
+---
+
+ - Os dados são inseridos sempre no topo, ou seja, sempre que um novo elemento é inserido ele ocupa o topo da Pilha
+
+ - Só temos acesso ao elemento que está no topo
+
+ - O processo de inserir um elemento é chamado de push.
+
+ - O processo de remover um elemento é chamado de pop.
+
+ - Aplicação da Pilha:  CTRL + Z
+ 
