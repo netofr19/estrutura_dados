@@ -5,7 +5,7 @@ def select_sort(array):
     # Traverse through all array elements
     for i in range(len(array)):
 
-        # Find the minimum elemento in remaining unsorted array
+        # Find the minimum element in remaining unsorted array
         min_idx = i
         for j in range(i+1, len(array)):
             if array[j] < array[min_idx]:
