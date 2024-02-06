@@ -70,4 +70,49 @@ fun(3);
 ```
 
 ### Tree Recursion
-- 
+
+- It's a function that is a recursive function and is calling itself more than one time;
+
+```c
+void fun(int n){
+    if (n>0){
+        printf("%d", n);
+        fun(n-1);
+        fun(n-1);
+    }
+}
+```
+
+### Indirect Recursion
+
+```c
+void funA(int n){
+    if(n>0){
+        printf("%d ", n);
+        funB(n-1);
+    }
+}
+
+void funB(int n){
+    if (n>1){
+        printf("%d ", n);
+        funA(n/2);
+    }
+}
+```
+
+### Nested Recursion
+
+```c
+int fun(int n){
+    if (n>100){
+        return n-10;
+    else{
+        return fun(fun(n+11));
+    }
+    }
+}
+```
+
+### Sum of Natural Number using recursion
+
