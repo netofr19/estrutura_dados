@@ -116,3 +116,125 @@ int fun(int n){
 
 ### Sum of Natural Number using recursion
 
+```
+Sum(n) = 1+2+3+4+5+6+...+(n+1)+n
+Sum(n) = Sum(n-1)+n
+Sum(n) = {0, if n = 0
+         {Sum(n-1)+n, if n>0
+```
+
+- Sum using recursion
+
+```c
+int Sum(int n){
+    if(n==0){
+        return 0;
+    } else {
+        return Sum(n-1)+n;
+    }
+}
+```
+
+ - Sum using loop
+
+ ```c
+int Sum(int n){
+    int i, s=0;
+    for(i=1; i<=n;i++){
+        s += i;
+    }
+    return s;
+}
+```
+
+- Sum using gauss function
+
+```c
+int Sum(int n){
+    return (n * (n+1))/2;
+}
+```
+
+### Factorial of a Number
+```
+n! = 1*2*3*4*...*n
+fact(n) = 1*2*3*...*(n-1)*n
+fact(n) = fact(n-1)*n
+fact(n) = {1, if n = 0
+          {fact(n-1)*n, if n > 0
+```
+
+- Factorial using recursion
+
+```c
+int fact(int n){
+    if(n==0){
+        return 1;
+    } else {
+        return fact(n-1)*n;
+    }
+}
+```
+
+### Power using recursion
+
+```
+2⁵ = 2*2*2*2*2
+
+pow(m,n) = m*m*m*...*(n-1) times * m
+pow(m,n) = pow(m,n-1)*m
+pow(m,n) = {1, if n=0
+           {pow(m,n-1)*m, if n>0
+```
+
+- Expoent with recursion
+
+```c
+int pow(int m, int n){
+    if(n==0){
+        return 1;
+    } else {
+        pow(m,n-1)*m;
+    }
+}
+```
+
+- Expoent with power function
+
+```c
+int pow(int m, int n){
+    if(n==0){
+        return 1;
+    }
+    if (n%2==0){
+        return pow(m*m, n/2);
+    } else {
+        return m*pow(m*m, (n-1)/2);
+    }
+}
+```
+
+### Taylor Series using recursion
+
+```
+e^x = 1 + (x/1) + (x²/2!) + (x³/3!) + (x⁴/4!) + ... + n terms
+
+Sum(n) = 1+2+3+4+...+n = Sum(n-1)+n
+Fact(n) = 1*2*3*4*...*n = Fact(n-1)*n
+Pow(x,n) = x*x*x*x*...*n times = pow(x, n-1) * x
+```
+
+```c
+int e(int x, int n){
+    static int P=1; F=1;
+    int r;
+    if(n==0){
+        return 1;
+    } else {
+        r = e(x, n-1);
+        P = P*x;
+        F = F*n;
+        return r + P/F;
+    }
+}
+```
