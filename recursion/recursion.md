@@ -238,3 +238,104 @@ int e(int x, int n){
     }
 }
 ```
+
+- Taylor Series using Horner's Rule
+
+```
+e^x = 1 + (x/1) + (x²/2!) + (x³/3!) + (x⁴/4!) + ... + n terms
+
+e^x = 1 + (x/1) + (x²/(1*2)) + (x³/(1*2*3) + (x⁴)/(1*2*3*4)) + ...
+
+e^x = 1 + (x/1)[1+(x/2) + (x²/(2*3)) + (x³/2*3*4)] -> O(n²)
+
+e^x = 1 + (x/1)[1+(x/2)[1+(x/3)+[1+(x/4)]]] -> O(n)
+```
+
+- Horner's Rule using Loop
+
+```c
+
+int e(int x, int n){
+    int s=1;
+    while (n>0){
+        s = 1+(x/n)*s;
+        n--;
+    }
+    return s;
+}
+
+```
+
+- Horner's Rule using Recursive function
+
+```c
+int e(int x, int n){
+    static int s=1;
+    if (n==0){
+        return s;
+    } else {
+        s = 1+(x/n)*s;
+    }
+    return e(x, n-1)
+}
+```
+
+### Fibonacci Series using recursion
+
+```
+fib(n) = {0, if n=0
+         {1, if n=1
+         {fib(n-2) + fib(n-1), if n>1
+```
+
+- Fibonacci Series using Recursion
+
+```c
+int fib(int n){
+    if (n <= 1){
+        return n;
+    } else {
+        return fib(n-2) + fib(n-1);
+    }
+}
+```
+
+- Fibonacci Series using Loop
+
+```c
+int fib(int n){
+    int t0=0, t1=1, s;
+    if (n<=1){
+        return n;
+    } else {
+        for(int i=2; i<=n; i++){
+        s=t0+t1;
+        t0=t1;
+        t1=s;
+        }
+        return s;
+        }
+}
+    
+```
+
+- Fibonacci Series using Recursion and Memorization
+
+```c
+int F[10];
+
+int fib(int n){
+    if (n <=n){
+        F[n] = n;
+        return n;
+    } else {
+        if(F[n-2]==-1){
+            F[n-2] = fib(n-2);
+        }
+        if(F[n-1]==-1){
+            F[n-1] = fib(n-1);
+        }
+        return F[n-2] + F[n-1];
+    }
+}
+```
