@@ -339,3 +339,44 @@ int fib(int n){
     }
 }
 ```
+
+### Combination Formula using Recursion
+
+```
+Comb = (n!)/(r!*(n-r)!)
+```
+ - Direct function without recursion
+```c
+int Comb(int n, int r){
+    int t1, t2, t3;
+    t1 = fact(n);
+    t2 = fact(r);
+    t3 = fact(n-r);
+    return t1/(t2*t3);
+}
+```
+
+ - Function with recursion
+
+```c
+int Comb(int n, int r){
+    if(r==0 || n==r){
+        return 1;
+    } else {
+        return Comb(n-1, r-1) + Comb(n-1, r) 
+    }
+
+}
+```
+
+### Tower of Hanoi Problem
+
+```c
+void TOH(int n, int A, int B, int C){
+    if (n> 0){
+        TOH(n-1, A, C, B);
+        printf("from %d to %d", A, C);
+        TOH(n-1, B, A, C);
+    }
+}
+```
