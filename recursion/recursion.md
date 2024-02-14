@@ -6,6 +6,10 @@
 
 - Must be a finish condition, otherwise the code will run infinitely;
 
+- Recursion uses more memory, because the recursive function adds to the stack with each recursive call, and keeps the values there until the call is finished;
+
+- The recursive function uses LIFO (LAST IN FIRST OUT) Structure;
+
 ## Types of Recursion
 
 - Tail Recursion
