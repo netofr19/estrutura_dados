@@ -127,5 +127,30 @@ Add(A[2][3]) = 0 + [2*4+3]*2 = 22;
 
 Add[A[i][j]] = L0 + [i*n + j] *size_data
 
+N-DIMENSION
+int A[d1][d2][d3][d4;];
 
+Add(A[i1][i2][i3][i4]) = L0 + [(i1*d2*d3*d4)+(i2*d3*d4)+(i3*d4)+i4]*size_data
+Add(A[i1][i2][i3][i4]) = L0 + Sum(ip*Prod(dq))*size_data
+
+- Number of multiplications
+
+4D -> 3+2+1 = 6
+5D -> 4+3+2+1 = 10
+nD -> (n-1)+(n-2)+...+3+2+1 = (n(n-1))/2 -> O(n²)
+
+3-DIMENSION
+int A[l][m][n];
+
+Add(A[i][j][k]) = L0 + [i*m*n + j*n + k]*data_size
+
+```
+
+## Array ADT
+
+```
+DATA
+1. Array Space;
+2. Size;
+3. Length (n of elements);
 ```
