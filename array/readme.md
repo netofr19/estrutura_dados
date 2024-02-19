@@ -153,4 +153,73 @@ DATA
 1. Array Space;
 2. Size;
 3. Length (n of elements);
+
+Operations
+1. Display();
+2. Add(x)/Append(x);
+3. Insert(index, x);
+4. Delete(index);
+5. Search(x);
+6. Get(index);
+7. Set(index, x);
+8. Max()/Min();
+9. Reverse();
+10. Shift()/Rotate().
+```
+
+### 1. Display
+
+```c
+void display(Array arr){
+    for (int i=0; arr.length; i++){
+        printf("%d ", arr.A[i]);
+    }
+}
+    
+```
+
+### 2. Add(x)/Append(x)
+
+```c
+void add(Array *arr,int x){
+    arr->A[arr->length] = x;
+    arr->length++;
+}
+```
+
+### 3. Insert(index, x)
+
+```c
+void insert(Array *arr, index, x){
+    int i;
+    for (i = arr->length; i > index; i--){
+        arr->A[i] = arr->A[i-1];
+    }
+    arr->A[index] = x;
+    arr->length++;
+}
+```
+
+### 4. Delete(index)
+
+```c
+void delete(Array *arr, index){
+    for (int i=index; i<arr->length-1; i++){
+        arr->A[i] = arr->A[i+1];
+    }
+    arr->length--;
+}
+```
+
+### 5.1 Linear Search
+
+```c
+int linearSearch(Array *arr, key){
+    for (int =0; i<arr->length; i++){
+        if (key == arr->A[i]){
+            return i;
+        }
+    }
+    return -1;
+}
 ```
