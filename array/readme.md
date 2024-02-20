@@ -211,13 +211,59 @@ void delete(Array *arr, index){
 }
 ```
 
-### 5.1 Linear Search
+### 5.1. Linear Search
 
 ```c
 int linearSearch(Array *arr, key){
     for (int =0; i<arr->length; i++){
         if (key == arr->A[i]){
             return i;
+        }
+    }
+    return -1;
+}
+```
+
+### 5.2. Binary Search
+
+- The number of comparisons depend of the height of the tree;
+ - Best = O(1);
+ - Worst = O(logn);
+
+```
+For Binary Search, we need three variables:
+ - l;
+ - h;
+ - mid = (l+h)/2;
+```
+
+```c
+int binarySearch(int l, int h, int key){
+    int mid;
+
+    while (l <= h){
+        mid = [(l+h)/2];
+        if (key == A[mid]){
+            return mid;
+        } else if (key < A[mid]){
+            h = mid-1;
+        } else{
+            l = mid+1;
+        }
+    }
+    
+    return -1;
+}
+
+int recursionBinarySearch(int l, int h, int key){
+    if (l <= h){
+        int mid = [(l+h)/2];
+        if (key == A[mid]){
+            return mid;
+        } else if(key < mid){
+            return recursionBinarySearch(l, mid-1, key);
+        } else {
+            return recursionBinarySearch(mid+1, h, key);
         }
     }
     return -1;
