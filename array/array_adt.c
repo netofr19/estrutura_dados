@@ -109,6 +109,78 @@ int RecursionBinarySearch(int a[], int l, int h, int key){
     return -1;
 }
 
+int Get(struct Array arr, int index){
+    if(index >= 0 && index < arr.length){
+        return arr.A[index];
+    }
+    return -1;
+}
+
+void Set(struct Array *arr, int index, int x){
+    if (index >= 0 && index < arr->length){
+        arr->A[index] = x;
+    }
+}
+
+int Max(struct Array arr){
+    int max = arr.A[0];
+    
+    for(int i=1; i<arr.length;i++){
+        if(arr.A[i]>max){
+            max=arr.A[i];
+        }
+    }
+
+    return max;
+}
+
+int Min(struct Array arr){
+    int min = arr.A[0];
+    
+    for(int i=1; i<arr.length;i++){
+        if(arr.A[i]<min){
+            min=arr.A[i];
+        }
+    }
+
+    return min;
+}
+
+int Sum(struct Array arr){
+    int total = 0;
+
+    for (int i = 0; i< arr.length; i++){
+        total += arr.A[i];
+    }
+
+    return total;
+}
+
+float Avg(struct Array arr){
+    return (float)Sum(arr)/arr.length;
+}
+
+void Reverse(struct Array *arr){
+    int *B;
+    int i,j;
+
+    B = (int *)malloc(arr->length*sizeof(int));
+
+    for(i=arr->length-1, j=0; i>=0; i--, j++){
+        B[j] = arr->A[i];
+    }
+    for(i=0; i<=arr->length;i++){
+        arr->A[i] = B[i];
+    }
+}
+
+void Reverse2(struct Array *arr){
+    int i,j;
+    for(i=0, j=arr->length-1; i<j; i++,j--){
+        swap(&arr->A[i], &arr->A[j]);
+    }
+}
+
 int main()
 {
     
@@ -148,16 +220,39 @@ int main()
 
     // Linear Search
     printf("Linear Search of %d: %d\n", 5, LinearSearch(&arr, 5));
-    Display(arr);
     printf("\n");
 
     // Binary Search
     printf("Binary Search of %d: %d\n", 5, BinarySearch(arr, 5));
-    Display(arr);
+    printf("\n");
 
     // Recursive Binary Search
     printf("Recursive Binary Search of %d: %d\n", 5, RecursionBinarySearch(arr.A, 0, arr.length, 5));
+    printf("\n");
+
+    //Get
+    printf("Get of the index %d: %d\n", 2, Get(arr, 2));
+    printf("\n");
+
+    //Set
+    Set(&arr, 0, 15);
     Display(arr);
+    printf("\n");
+
+    //Max
+    printf("Max of the array: %d\n", Max(arr));
+
+    //Sum
+    printf("Sum of the array: %d\n", Sum(arr));
+
+    //Avg
+    printf("Average of the array: %f\n", Avg(arr));
+    printf("\n");
+
+    //Reverse
+    Reverse(&arr);
+    Display(arr);
+    printf("\n");
 
     return 0;
 }

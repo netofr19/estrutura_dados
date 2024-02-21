@@ -269,3 +269,119 @@ int recursionBinarySearch(int l, int h, int key){
     return -1;
 }
 ```
+
+### 6. Get
+
+```c
+int get(int index){
+    if(index >= 0 && index < length){
+        return A[index];
+    }
+}
+```
+
+### 7. Set
+
+```c
+int set(int index, int x){
+    if(index >= 0 && index < length){
+        A[index] = x;
+    }
+}
+```
+
+### 8. Max
+
+```c
+int max(Array A){
+    int max = A[0];
+    for (int i = 1; i < length; i++){
+        if (A[i] > max){
+            max = A[i];
+        }
+    }
+    return max;
+}
+```
+
+### 9. Min
+
+```c
+int min(Array A){
+    int min = A[0];
+    for (int i = 1; i < length; i++){
+        if (A[i] < min){
+            min = A[i];
+        }
+    }
+    return min;
+}
+```
+
+### 10. Sum
+
+- Loop:
+```c
+int sum(Array A){
+    int total = 0;
+    for(int i = 0; i < length; i++){
+        total += A[i];
+    }  
+    return total;
+}
+```
+
+- Recursion:
+```c
+int sum(Array A, int n){
+    if (n < 0){
+        return 0;
+    } else {
+        return sum(n-1) + A[n];
+    }
+}
+
+//call -> sum(A, length-1)
+```
+
+### 11. Average
+```c
+int average(Array A){
+    int total = 0;
+    for(int i = 0; i < length; i++){
+        total += A[i];
+    }  
+    return total/length;
+}
+```
+
+### 12. Reverse
+
+```
+A = |8|3|9|15|6|10|7|2|12|4|
+
+B = |4|12|2|7|10|6|15|9|3|8| -> reverse
+
+```
+
+```c
+
+void reverse(struct Array *A){
+    int B[A.length];
+    for (int i = A->length; int j=0; i>=0; i--; j++){
+        B[j] = A[i];
+    }
+
+    for (int i=0; i<length; i++){
+        A[i] = B[i];
+    }
+}
+
+```
+
+#### 13. Left Shift/Rotate
+```
+A = |6|3|8|5|9|
+A = |3|8|5|9|0| -> left shifted
+A = |3|8|5|9|6| -> left rotated
+```
