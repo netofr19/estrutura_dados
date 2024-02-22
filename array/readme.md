@@ -379,9 +379,37 @@ void reverse(struct Array *A){
 
 ```
 
-#### 13. Left Shift/Rotate
+### 13. Left Shift/Rotate
 ```
 A = |6|3|8|5|9|
 A = |3|8|5|9|0| -> left shifted
 A = |3|8|5|9|6| -> left rotated
+```
+
+### 14. Sorted Array
+
+```c
+int isSorted(A, n){
+    for(int i = 0; i<n-1; i++){
+        if (A[i]>A[i+1]){
+            return 0;
+        }
+    }
+    return 1;
+}
+```
+
+### 15. Merge Array
+
+```
+-- Pseudocode --
+i = 0;
+j= 0;
+k = 0;
+
+while (i < m && j < n>)
+    if (A[i] < B[j])
+        C[k++] = A[i++];
+    else
+        C[k++] = B[j++];
 ```
