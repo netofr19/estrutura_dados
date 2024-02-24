@@ -413,3 +413,11 @@ while (i < m && j < n>)
     else
         C[k++] = B[j++];
 ```
+
+### 16. Set Operations
+
+#### 16.1. Union
+
+```c
+
+```
