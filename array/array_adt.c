@@ -2,7 +2,7 @@
 
 struct Array
 {
-    int A[10];
+    int *A;
     int size;
     int length;
 };
@@ -251,102 +251,148 @@ struct Array* Union (struct Array *arr1, struct Array *arr2){
     int i, j, k;
     i=j=k=0;
 
-    struct Array *arr3 = (struct Array *)mallor(sizeof(struct Array));
+    struct Array *arr3 = (struct Array *)malloc(sizeof(struct Array));
 
     while(i<arr1->length && j<arr2->length){
-        
+        if(arr1->A[i]<arr2->A[j]){
+            arr3->A[k++]=arr1->A[i++];
+        } else if (arr2->A[j]<arr1->A[i]){
+            arr3->A[k++]=arr2->A[j++];
+        } else {
+            arr3->A[k++] = arr1->A[i++];
+            j++;
+        }
     }
+
+    for(;i<arr1->length;i++){
+        arr3->A[k++] = arr1->A[i];
+    }
+    for(;j<arr2->length;j++){
+        arr3->A[k++] = arr2->A[j];
+    }
+
+    arr3->length=k;
+    arr3->size=10;
+
+    return arr3;
+}
+
+struct Array* Intersection(struct Array *arr1, struct Array *arr2){
+    int i,j,k;
+    i=j=k=0;
+
+    struct Array *arr3 = (struct Array *)malloc(sizeof(struct Array));
+
+    while(i<arr1->length && j<arr2->length){
+        if(arr1->A[i]<arr2->A[j]){
+            i++;
+        } else if (arr2->A[j]<arr1->A[i]){
+            j++;
+        } else if (arr1->A[i] == arr2->A[j]){
+            arr3->A[k++] = arr1->A[i++];
+            j++;
+        }
+    }
+
+    arr3->length=k;
+
+}
+
+struct Array* Difference(struct Array *arr1, struct Array *arr2){
+    int i, j, k;
+    i=j=k=0;
+
+    struct Array *arr3 = (struct Array *)malloc(sizeof(struct Array));
+
+    while(i<arr1->length && j<arr2->length){
+        if(arr1->A[i]<arr2->A[j]){
+            arr3->A[k++]=arr1->A[i++];
+        } else if (arr2->A[j]<arr1->A[i]){
+            j++;
+        } else {
+            i++;
+            j++;
+        }
+    }
+
+    for(;i<arr1->length;i++){
+        arr3->A[k++] = arr1->A[i];
+    }
+
+    arr3->length=k;
+    arr3->size=10;
+
+    return arr3;
+}
+
+void menu(struct Array arr1){
+
+    int ch;
+    int x, index;
+
+    printf("====== MENU ======\n");
+    printf("1. Insert\n");
+    printf("2. Delete\n");
+    printf("3. Search\n");
+    printf("4. Sum\n");
+    printf("5. Display\n");
+    printf("6. Exit\n");
+
+    printf("Enter your choice: ");
+    scanf("%d", &ch);
+    printf("\n");
+
+    switch (ch)
+    {
+    case 1:
+        printf("Enter an element and index: ");
+        scanf("%d%d", &x, &index);
+        Insert(&arr1, index, x);
+        printf("\n");
+        menu(arr1);
+    case 2:
+        printf("Enter the index to delete: ");
+        scanf("%d", &index);
+        x = Delete(&arr1, index);
+        printf("Deleted Element is %d\n", x);
+        printf("\n");
+        menu(arr1);
+    case 3:
+        printf("Enter the Element to search: ");
+        scanf("%d", &x);
+        index = LinearSearch(&arr1, x);
+        printf("Element index: %d", index);
+        printf("\n");
+        menu(arr1);
+    case 4:
+        printf("Sum is: %d\n", Sum(arr1));
+        printf("\n");
+        menu(arr1);
+    case 5:
+        Display(arr1);
+        printf("\n");
+        menu(arr1);
+    case 6:
+        printf("See you soon!");
+        printf("\n");
+        break;
+    default:
+        printf("Invalid option! Please select a valid option!");
+        printf("\n");
+        menu(arr1);
+    }
+
 }
 
 int main()
 {
+    struct Array arr1;
     
-    struct Array arr1 = {{2,6,10,15,25}, 10, 5};
-    struct Array arr2 = {{3,4,7,18,20}, 10, 5};
-    struct Array *arr3;
+    printf("Enter Size of Array: ");
+    scanf("%d", &arr1.size);
+    arr1.A=(int *)malloc(arr1.size*sizeof(int));
 
-
-    // printf("Enter the size of an array: ");
-    // scanf("%d", &arr.size);
-    
-    // arr.A=(int *)malloc(arr.size*sizeof(int));
-    // arr.length = 0;
-
-    // printf("Enter number of numbers: ");
-    // scanf("%d", &n);
-
-    // for (i=0; i<n; i++){
-    //     printf("Enter the element %d of the array: ", i);
-    //     scanf("%d", &arr.A[i]);
-    //     arr.length += 1;
-    // }
-
-    // // Append
-    // Display(arr);
-    // Append(&arr, 10);
-    // printf("\n");
-
-    // // Insert
-    // Display(arr);
-    // Insert(&arr, 4,20);
-    // printf("\n");
-
-    // // Delete
-    // Display(arr);
-    // int del_array = Delete(&arr, 4);
-    // printf("Value deleted: %d\n", del_array);
-    // Display(arr);
-    // printf("\n");
-
-    // // Linear Search
-    // printf("Linear Search of %d: %d\n", 5, LinearSearch(&arr, 5));
-    // printf("\n");
-
-    // // Binary Search
-    // printf("Binary Search of %d: %d\n", 5, BinarySearch(arr, 5));
-    // printf("\n");
-
-    // // Recursive Binary Search
-    // printf("Recursive Binary Search of %d: %d\n", 5, RecursionBinarySearch(arr.A, 0, arr.length, 5));
-    // printf("\n");
-
-    // //Get
-    // printf("Get of the index %d: %d\n", 2, Get(arr, 2));
-    // printf("\n");
-
-    // //Set
-    // Set(&arr, 0, 15);
-    // Display(arr);
-    // printf("\n");
-
-    // //Max
-    // printf("Max of the array: %d\n", Max(arr));
-
-    // //Sum
-    // printf("Sum of the array: %d\n", Sum(arr));
-
-    // //Avg
-    // printf("Average of the array: %f\n", Avg(arr));
-    // printf("\n");
-
-    // //Reverse
-    // Reverse(&arr);
-    // Display(arr);
-    // printf("\n");
-
-    // //Check if sorted
-    // printf("Is sorted: %d\n", isSorted(arr));
-    // Display(arr);
-    // printf("\n");
-
-    // Rearrange positive and negative values
-    // Rearrange(&arr);
-    // Display(arr);
-    // printf("\n");
-
-    // Merge of arrays
-    arr3=Merge(&arr1, &arr2);
-    Display(*arr3);
+    menu(arr1);
     
     return 0;
 }
