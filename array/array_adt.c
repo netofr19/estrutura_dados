@@ -350,6 +350,7 @@ void menu(struct Array arr1){
         Insert(&arr1, index, x);
         printf("\n");
         menu(arr1);
+        break;
     case 2:
         printf("Enter the index to delete: ");
         scanf("%d", &index);
@@ -357,6 +358,7 @@ void menu(struct Array arr1){
         printf("Deleted Element is %d\n", x);
         printf("\n");
         menu(arr1);
+        break;
     case 3:
         printf("Enter the Element to search: ");
         scanf("%d", &x);
@@ -364,14 +366,17 @@ void menu(struct Array arr1){
         printf("Element index: %d", index);
         printf("\n");
         menu(arr1);
+        break;
     case 4:
         printf("Sum is: %d\n", Sum(arr1));
         printf("\n");
         menu(arr1);
+        break;
     case 5:
         Display(arr1);
         printf("\n");
         menu(arr1);
+        break;
     case 6:
         printf("See you soon!");
         printf("\n");
@@ -380,6 +385,7 @@ void menu(struct Array arr1){
         printf("Invalid option! Please select a valid option!");
         printf("\n");
         menu(arr1);
+        break;
     }
 
 }
@@ -390,6 +396,7 @@ int main()
     
     printf("Enter Size of Array: ");
     scanf("%d", &arr1.size);
+    arr1.length = 0;
     arr1.A=(int *)malloc(arr1.size*sizeof(int));
 
     menu(arr1);
