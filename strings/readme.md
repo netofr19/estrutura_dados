@@ -150,3 +150,122 @@ int main(){
     return 0;
 }
 ```
+
+## Reversing a String
+
+- Method 01:
+
+```c
+int main(){
+
+    char A[] = "python";
+    char B[7];
+    int i,j;
+
+    for(i = 0; A[i] != '\0'; i++){
+
+    }
+
+    i -= 1;
+
+    for (j=0; i>=0; i--; j++){
+        B[j] = A[i];
+    }
+
+    B[j] = '\0';
+
+    printf("%s", B);
+
+    return 0; 
+}
+```
+
+- Method 02:
+
+```c
+int main(){
+
+    char A[] = "python";
+    char t;
+    int i, j;
+
+    for (j=0; A[j] != '\0'; j++){}
+
+    j = j-1;
+
+    for(i=0; i<j; i++; j--){
+        t = A[i];
+        A[i] = A[j];
+        A[j] = t;
+    }
+
+    printf("%s", A);
+
+    return 0;
+}
+```
+
+## Comparing Strings and Palindrome
+
+```c
+char A[] = "Painter";
+char B[] = "Painting";
+int i, j;
+
+for (i=0, j=0; A[i] != '\0' && B[j] != '\0'; i++, j++){
+    if (A[i]!=B[j]){
+        break;
+    }
+}
+if (A[i] == B[j]){
+    printf("Equal!");
+}
+else if (A[i]<B[j]){
+    printf("Smaller!");
+}
+else {
+    printf("Greater!");
+}
+```
+
+## Finding Duplicates in a String
+
+- Using Hashtable:
+```c
+int main(){
+    char A[] = "finding";
+    int H[26], i;
+
+    for(i=0; A[i] != '\0'; i++){
+        H[A[i]-97]++;
+    }
+
+    for (i=0; i<26;i++){
+        if (H[i]>1){
+            printf("-> %c repeated %d times.\n", i+97, H[i]);
+        }
+    }
+}
+```
+
+-Bitwise Operations:
+```c
+int main(){
+    char A[] = "finding";
+    long int H = 0, x=0;
+
+    for (int i = 0; A[i] != '\0'; i++){
+        x = 1;
+        x = x<<(A[i]-97);
+
+        if ((x&H) > 0){
+        printf("%c is duplicate", A[i]);
+        else {
+            H = x||H;
+        }
+    }
+    }
+    
+
+}
+```
