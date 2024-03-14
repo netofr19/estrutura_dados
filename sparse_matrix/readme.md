@@ -113,3 +113,47 @@ void add(struct Sparse *s1, struct Sparse *s2){
 }
 ```
 
+## Polynomial Representation
+
+
+```
+p(x) = 3x⁵ + 2x⁴ + 5x² + 2x + 7
+```
+
+```cpp
+struct Term{
+    int coef;
+    int exp;
+}
+
+struct Poly{
+    int n;
+    struct Term *t;
+}
+
+int main(){
+
+    struct Poly p;
+    
+    printf("Number of non-zero terms: ");
+    scanf("%d", &p.n);
+
+    p.t = New Term[p.n];
+
+    printf("Enter polynomial terms: ");
+    for(int i=0; i<p.n; i++){
+        printf("term n %d: ", i+1);
+        scanf("%d%d", &p.t[i].coef, &p.t[i].exp);
+    }
+
+    //Evaluation the polynomial
+    int x = 5, sum = 0;
+    for (int i=0; i<p.n; i++){
+        sum += p.t[i].coef * math.pow(x, p.t[i].exp);
+    }
+
+    printf("Evaluation to %d = %d", x, sum);
+
+    return 0;
+}
+```

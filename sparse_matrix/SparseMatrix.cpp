@@ -34,7 +34,7 @@ public:
     friend ostream & operator<<(ostream &os, Sparse &s);
 };
 
-Sparse Sparse::operator+(Sparse &s);
+Sparse Sparse::operator+(Sparse &s)
 {
     int i,j,k;
     if(m!=s.m || n!=s.n){
@@ -60,7 +60,7 @@ Sparse Sparse::operator+(Sparse &s);
             }
             else {
                 sum->ele[k] = ele[i];
-                sum->ele[k++].x = ele[i++].x + s.ele[j++].x
+                sum->ele[k++].x = ele[i++].x + s.ele[j++].x;
             }
         }
     }
@@ -74,7 +74,7 @@ Sparse Sparse::operator+(Sparse &s);
 
     sum->num = k;
 
-    return sum;
+    return *sum;
 }
 
 
@@ -107,8 +107,16 @@ ostream & operator<<(ostream &os, Sparse &s){
 int main()
 {
     Sparse s1(5,5,5);
+    Sparse s2(5,5,5);
+
     cin>>s1;
-    cout<<s1;
+    cin>>s2;
+
+    Sparse sum=s1+s2;
+
+    cout<<"First Matrix"<<endl<<s1<<"\n";
+    cout<<"Second Matrix"<<endl<<s2<<"\n";
+    cout<<"Sum Matrix"<<endl<<sum<<"\n";
 
     return 0;
 }
