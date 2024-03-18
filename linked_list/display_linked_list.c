@@ -32,13 +32,78 @@ void Display(Node *p){
     }
 }
 
+void recursiveDisplay(Node *p){
+    if (p!=NULL){
+        printf("%d ", p->data);
+        recursiveDisplay(p->next);
+    }
+}
+
+int count(Node *p){
+    int c=0;
+    while (p){
+        c++;
+        p=p->next;
+    }
+
+    return c;
+}
+
+int recursiveCount(Node *p){
+    if(p!=NULL){
+        return recursiveCount(p->next)+1;
+    }
+    else {
+        return 0;
+    }
+}
+
+int Sum(Node *p){
+    int s = 0;
+    while(p!=NULL){
+        s+= p->data;
+        p = p->next;
+    }
+    return s;
+}
+
+int recursiveSum(Node *p){
+    if(p==NULL){
+        return 0;
+    }
+    else {
+        return recursiveSum(p->next) + p->data;
+    }
+}
+
 int main()
 {
-    int A[]={3,5,7,10,15};
+    int A[]={3,5,7,10,15, 8, 12, 20};
 
-    Create(A, 5);
+    Create(A, 8);
 
+    printf("\n---------------------------------\n");
+    printf("Display of the Linked List: ");
     Display(first);
+
+    printf("\n---------------------------------\n");
+    printf("Recursive display of the Linked List: ");
+    recursiveDisplay(first);
+
+    printf("\n---------------------------------\n");
+    printf("Length of the Linked List: %d", count(first));
+
+    printf("\n---------------------------------\n");
+    printf("Recursive length of the Linked List: %d", recursiveCount(first));
+
+    printf("\n---------------------------------\n");
+    printf("The sum of elements of the Linked List is: %d", Sum(first));
+
+    printf("\n---------------------------------\n");
+    printf("The recursive sum of elements of the Linked List is: %d", recursiveSum(first));
+
+    printf("\n---------------------------------\n");
+
     
     return 0;
 }
