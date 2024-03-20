@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <limits.h>
 
 struct Node{
     int data;
@@ -76,9 +77,100 @@ int recursiveSum(Node *p){
     }
 }
 
+int Max(Node *p){
+    int max=INT_MIN;
+
+    while(p){
+        if(p->data > max){
+            max=p->data;
+        }
+        p=p->next;
+    }
+
+    return max;
+}
+
+int recursiveMax(Node *p){
+    int x = 0;
+
+    if(p==0){
+        return INT_MIN;
+    }
+
+    x = recursiveMax(p->next);
+
+    if(x>p->data){
+        return x;
+    }
+    else{
+        return p->data;
+    }
+}
+
+Node* linearSearch(Node *p, int key){
+    while(p!=NULL){
+        if(key==p->data)
+            return p;
+        p = p->next;
+    }
+    return NULL;
+}
+
+Node * recursiveLinearSearch(Node *p, int key){
+    if (p==NULL){
+        return NULL;
+    }
+
+    if (key==p->data){
+        return p;
+    }
+    return recursiveLinearSearch(p->next, key);
+}
+
+Node* linearSearch2(Node *p, int key){
+    Node *q=NULL;
+    while(p!= NULL){
+        if(key==p->data){
+            q->next = p->next;
+            p->next = first;
+            first = p;
+            return p;
+        }
+        q = p;
+        p = p->next;
+    }
+    return NULL;
+}
+
+void Insert(Node *p, int index, int x){
+    Node *t;
+
+    if(index < 0 || index > count(p)){
+        return;
+    }
+    else {
+        t = (Node *) malloc (sizeof(Node));
+        t->data = x;
+
+        if(index == 0){
+            t->next=first;
+            first=t;
+        }
+        else {
+            for(int i=0; i<index-1; i++){
+                p=p->next;
+            }
+            t->next =p->next;
+            p->next = t;
+        }
+    }
+}
+
 int main()
 {
-    int A[]={3,5,7,10,15, 8, 12, 20};
+    int A[]={3,5,7,10,15, 8, 12, 2};
+
+    Node *temp;
 
     Create(A, 8);
 
@@ -101,6 +193,68 @@ int main()
 
     printf("\n---------------------------------\n");
     printf("The recursive sum of elements of the Linked List is: %d", recursiveSum(first));
+
+    printf("\n---------------------------------\n");
+    printf("Max of Linked List is: %d", Max(first));
+
+    printf("\n---------------------------------\n");
+
+    printf("Recursive Max of Linked List is: %d", recursiveMax(first));
+    printf("\n---------------------------------\n");
+
+    temp=linearSearch(first, 15);
+    if(temp){
+        printf("The key %d is Found on the linked list!", temp->data);
+    }
+    else{
+        printf("The key was not found!");
+    }
+
+    printf("\n---------------------------------\n");
+
+    temp=recursiveLinearSearch(first, 15);
+    if(temp){
+        printf("The key %d is Found on the linked list using recursive function!", temp->data);
+    }
+    else{
+        printf("The key was not found using recursive function!");
+    }
+
+    printf("\n---------------------------------\n");
+
+    temp=linearSearch2(first, 15);
+    if(temp){
+        printf("The key %d is Found on the linked list!", temp->data);
+    }
+    else{
+        printf("The key was not found!");
+    }
+
+    printf("\n---------------------------------\n");
+
+    printf("Display of the Linked List: ");
+    Display(first);
+
+    printf("\n---------------------------------\n");
+
+    Insert(first, 0, 10);
+
+    printf("Display of the Linked List: ");
+    Display(first);
+
+    printf("\n---------------------------------\n");
+
+    Insert(first, 3, 26);
+
+    printf("Display of the Linked List: ");
+    Display(first);
+
+    printf("\n---------------------------------\n");
+
+    Insert(first, 10, 48);
+
+    printf("Display of the Linked List: ");
+    Display(first);
 
     printf("\n---------------------------------\n");
 
